@@ -12,13 +12,16 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import environ
+import dj_database_url
+import raven
 
 def get_list(text):
     return [item.strip() for item in text.split(',')]
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, False),
+    CACHE_TIMEOUT=(int, 60)
 )
 # reading .env file
 root = environ.Path(__file__) - 2
@@ -40,6 +43,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # ALLOWED_HOSTS = ['127.0.0.1', 'keralarescue.herokuapp.com', 'keralarescue.in', 'www.keralarescue.in', 'localhost']
 ALLOWED_HOSTS = get_list(os.environ.get('ALLOWED_HOSTS'))
 
+
+RAVEN_CONFIG = {
+    'dsn': env('SENTRY_DSN'),
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    # 'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
+}
+
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -52,6 +65,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap3',
     'django_filters',
+    'raven.contrib.django.raven_compat',
 ]
 
 MIDDLEWARE = [
@@ -88,11 +102,24 @@ WSGI_APPLICATION = 'floodrelief.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    # read os.environ['DATABASE_URL'] and raises ImproperlyConfigured exception if not found
-    'default': env.db()
-}
+# DATABASES = {
+#     # read os.environ['DATABASE_URL'] and raises ImproperlyConfigured exception if not found
+#     'default': env.db()
+# }
+DATABASES = {}
+DATABASES['default'] = dj_database_url.parse(env('B_DATABASE_URL'), conn_max_age=600)
 
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": env('REDIS_URL'),
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        },
+        "KEY_PREFIX": "keralarescue"
+    }
+}
+CACHE_TIMEOUT = env('CACHE_TIMEOUT')
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

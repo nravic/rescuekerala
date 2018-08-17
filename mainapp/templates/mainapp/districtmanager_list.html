@@ -11,18 +11,19 @@
        {{ filter.form.as_p }}
        <input type="submit" value="Find contact"/>
  </form>
- <table>
-  <tr>
-    <th>Name</th>
-    <th>Phone</th>
-    <th>Email</th>
-  </tr>
-   {% for req in filter.qs %}
-       <tr>
-         <td>{{ req.name }}</td>
-         <td>{{ req.phone }}</td>
-         <td>{{ req.email }}</td>
-       </tr>
-   {% endfor %}
- </table>
+ <div class="table-responsive">
+  <table class="table">
+    <tr>
+      <th>Name - പേര്</th>
+      <th>Phone - ഫോൺ</th>
+      <th>Other Contact - മറ്റ് കോൺടാക്റ്റ്</th>
+    </tr>
+    {% for req in filter.qs %}
+        <tr>
+          <td>{{ req.name }}</td>
+          <td><a href="tel:{{ req.phone }}">{{ req.phone }}</a></td>          <td>{{ req.email }}</td>
+        </tr>
+    {% endfor %}
+  </table>
+</div>
 {% endblock %}

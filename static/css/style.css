@@ -1,6 +1,5 @@
 body{
     background: #ededed;
-    font-family: 'Raleway';
 }
 .navbar{
     padding: 15px 30px;
@@ -96,6 +95,9 @@ footer{
     margin: 15px;
 }
 @media screen and (max-width: 640px) {
+    .navbar{
+        padding: 4px 6px;
+    }
     .brand-logo,.brand-logo:hover{
         font-size: 15px;
         padding: 3px 6px;
@@ -119,7 +121,6 @@ footer{
     a.home-button .text{
         font-size: 2rem;
     }
-    
     .nav-logo{
         height: 30px;
     }
@@ -146,4 +147,41 @@ tr:nth-child(even) {
 }
 tr:hover td{
     background-color: #dce9f1;
+}
+
+.static-page-box{
+    background: #F5F5F5;
+    margin-top:40px;
+    padding:20px 20px 50px;
+    border: 2px solid #CCCCCC;
+}
+
+.center {
+    text-align: center;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+}
+
+.pagination a.active {
+    background-color: #1C608C;
+    color: white;
+    border: 1px solid #1C608C;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+table thead tr th {
+  border-top: 2px solid #ddd !important;
 }

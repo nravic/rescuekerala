@@ -1,3 +1,4 @@
+{% spaceless %}
 {% load static %}
 {% load bootstrap3 %}
 
@@ -9,6 +10,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
+  <meta property="og:title" content="Kerala Rescue">
+  <meta property="og:site_name" content="Kerala Rescue">
+  <meta property="og:url" content="https://www.keralarescue.in/">
+  <meta property="og:description" content="Help out those affected by the Kerala floods by donating or volunteering">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{% static 'images/keralarescue.png' %}">
+
   <title>Kerala Rescue</title>
 
   {# <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}"/> #}
@@ -18,7 +26,6 @@
 
   {% bootstrap_css %}
 
-  <link rel="stylesheet" type="text/css" href="{% static 'fonts/fonts.css' %}"/>
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
 
 </head>
@@ -29,7 +36,9 @@
 
 <nav class="navbar">
     <div class="col-sm-4 col-xs-4">
-      <img src="{% static 'images/kerala-government.jpg' %}" class="nav-logo" style="float:left">
+      <a href="/">
+        <img src="{% static 'images/kerala-government.jpg' %}" class="nav-logo" style="float:left">
+      </a>
     </div>
     <div class="col-sm-4 col-xs-4 text-center">
     {% if not request.path == '/' %}
@@ -37,8 +46,10 @@
     {% endif %}
     </div>
     <div class="col-sm-4 col-xs-4">
+      <a href="http://www.itmission.kerala.gov.in/">
       <img src="{% static 'images/it-mission.png' %}" class="nav-logo" style="float: right;">
-      <img src="{% static 'images/ieeelogo.png' %}" class="nav-logo" style="float: right;margin-right: 8px;">
+      </a>
+      <a href="/ieee/"><img src="{% static 'images/ieeelogo.png' %}" class="nav-logo" style="float: right;margin-right: 6px;"></a>
     </div>
 </nav>
 <div class="container">
@@ -53,13 +64,13 @@
 
 <footer class="footer">
   <div class="container text-center">
-    {# <img src="{% static 'images/kerala-government.jpg' %}" class="footer-logo"> #}
-    {# <img src="{% static 'images/it-mission.png' %}" class="footer-logo"> #}
-    <img src="{% static 'images/ieeelogo.png' %}" class="footer-logo">
+    <a href="/disclaimer/" style="font-weight:bold">Disclaimer</a>
+    <span>&nbsp;|&nbsp;</span>
+    <a href="https://github.com/IEEEKeralaSection/rescuekerala/" target="_blank">GitHub</a>
+    {# &nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp; #}
+    {# <a href="/ieee/"><img src="{% static 'images/ieeelogo.png' %}" class="footer-logo"></a> #}
   </div>
 </footer>
-
-<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 {% bootstrap_javascript %}
@@ -77,3 +88,4 @@
 </body>
 
 </html>
+{% endspaceless %}
