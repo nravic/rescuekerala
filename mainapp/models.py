@@ -42,6 +42,7 @@ class Request(models.Model):
     needfood = models.BooleanField(verbose_name='Food - ഭക്ഷണം')
     needcloth = models.BooleanField(verbose_name='Clothing - വസ്ത്രം')
     needmed = models.BooleanField(verbose_name='Medicine - മരുന്നുകള്‍')
+    needmedicalaid = models.BooleanField(verbose_name='Medical Aid - ഡോക്ടർമാർ')
     needtoilet = models.BooleanField(verbose_name='Toiletries - ശുചീകരണ സാമഗ്രികള്‍ ')
     needkit_util = models.BooleanField(verbose_name='Kitchen utensil - അടുക്കള സാമഗ്രികള്‍')
 
@@ -49,6 +50,7 @@ class Request(models.Model):
     detailfood = models.CharField(max_length=250, verbose_name='Details for required food - ആവശ്യമായ ഭക്ഷണത്തിന്‍റെ വിവരങ്ങള്‍', blank=True)
     detailcloth = models.CharField(max_length=250, verbose_name='Details for required clothing - ആവശ്യമായ വസ്ത്രത്തിന്‍റെ വിവരങ്ങള്‍', blank=True)
     detailmed = models.CharField(max_length=250, verbose_name='Details for required medicine - ആവശ്യമായ മരുന്നിന്‍റെ  വിവരങ്ങള്‍', blank=True)
+    detailmedicalaid = models.CharField(max_length=250, verbose_name='Details for required medical assistance - ആവശ്യമായ മെഡിക്കൽ സഹായത്തിനായുള്ള വിശദാംശങ്ങൾ', blank=True)
     detailtoilet = models.CharField(max_length=250, verbose_name='Details for required toiletries - ആവശ്യമായ  ശുചീകരണ സാമഗ്രികള്‍', blank=True)
     detailkit_util = models.CharField(max_length=250, verbose_name='Details for required kitchen utensil - ആവശ്യമായ അടുക്കള സാമഗ്രികള്‍', blank=True)
 
